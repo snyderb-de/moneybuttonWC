@@ -1,12 +1,14 @@
 <?php
 
 /**
+ *
  * Plugin Name: moneybuttonWC
  * URI: TBD
  * Description: a plugin to use Money Button as a payment method for WooCommerce
  * Author: Bryan Snyder
  * Author URI: https://bryansnyder.dev
  * Version: 0.0.1
+ *
  */
 
 /**

@@ -40,5 +40,40 @@ function mbwc_class($gateways) {
          * TODO: fields validation
          * TODO: add webhooks -> check MB docs
          */
+
+        /* constructor */
+        public function __constructor($class, $version, $parent_class) {
+
+        }
+
+        /* plugin options */
+        public function  init_form_fields() {
+
+        }
+
+        /* payment fields */
+        public function payment_fields() {
+
+        }
+
+        /* custom CSS & JS to override standard CC fields */
+        public function payment_scripts() {
+
+        }
+
+        /* validate fields */
+        public function validate_fields() {
+
+        }
+
+        /* process payment */
+        public function process_payment($order_id) {
+
+        }
+
+        /* webhook might be needed */
+        public function webhook() {
+
+        }
     }
  }

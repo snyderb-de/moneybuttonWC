@@ -42,7 +42,37 @@ function mbwc_class($gateways) {
          */
 
         /* constructor */
-        public function __constructor($class, $version, $parent_class) {
+        public function __construct() {
+            $this->id = 'moneybutton' // payment gateway plugin ID
+            $this->icon = ''; // URL of the icon for payment gateway on checkout page
+            $this->has_fields = true; // for the use of custom credit card form fields
+            $this->method_title = 'Pay with Moneybutton'; // TODO: make sure you can edit this later
+            $this->method_description = 'Use Moneybutton to pay with BSV';
+
+            // TODO: add subscriptions, refunds, save method
+            $this->supports = array(
+                'products'
+            );
+
+            // Method with all the options fields
+            $this->init_form_fields();
+
+            // Load the settings
+            $this->init_settings();
+            $this->title = $this->get_option( 'title' );
+            $this->description = $this->get_option( 'description' );
+            $this->enabled = $this->get_option( 'enabled' );
+            $this->testmode = 'yes' === $this->get_option( 'testmode' );
+            $this->private_key = $this->testmode ? $this->get_option( 'test_private_key' ) : $this->get_option( 'private_key' );
+            $this->publishable_key = $this->testmode ? $this->get_option( 'test_publishable_key' ) : $this->get_option( 'publishable_key' );
+
+            //Save the settings
+            add_action( 'woocommerce_update_options_payment_gateways_' . $this->id array($this, 'process_admin_options'));
+
+            //We need custom JavaScript to obtain a token
+            add_action( 'wp_enqueue_scripts', array($this, 'payment_scripts'));
+
+            //register more webhooks here if needed
 
         }
 

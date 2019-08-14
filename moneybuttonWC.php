@@ -43,8 +43,8 @@ function mbwc_class($gateways) {
 
         /* constructor */
         public function __construct() {
-            $this->id = 'moneybutton' // payment gateway plugin ID
-            $this->icon = ''; // TODO: make icon and then this is the URL of the icon for payment gateway on checkout page
+            $this->id = 'moneybutton'; // payment gateway plugin ID
+            $this->icon = 'the icone URL will go here'; // TODO: make icon and then this is the URL of the icon for payment gateway on checkout page
             $this->has_fields = true; // for the use of custom credit card form fields
             $this->method_title = 'Pay with Moneybutton'; // TODO: make sure you can edit this later
             $this->method_description = 'Use Moneybutton to pay with BSV';
@@ -56,31 +56,6 @@ function mbwc_class($gateways) {
 
             // Method with all the options fields
             $this->init_form_fields() {
-
-            $this->form_fields = array(
-                'enabled' => array(
-                'title' => 'Enable/Disable',
-                'label' => 'Activate Moneybutton Payment Gateway',
-                'type' => 'checkbox',
-                'description' => 'This allows for the use of Moneybutton as a payment method',
-                'default' => 'no',
-                ),
-                'title' => array(
-                'title' => 'Title',
-                'type' => 'text',
-                'description' => 'This controls the title that the user will see on the Front End',
-                'default' => 'Moneybutton',
-                'desc_tip' => true,
-                ),
-                'description' => array(
-                'title' => 'Description',
-                'type' => 'text area',
-                'description' => '',
-
-                ),
-            )
-
-            };
 
             // Load the settings
             $this->init_settings();
@@ -103,7 +78,53 @@ function mbwc_class($gateways) {
 
         /* plugin options */
         public function  init_form_fields() {
-
+            $this->form_fields = array(
+                'enabled' => array(
+                    'title' => 'Enable/Disable',
+                    'label' => 'Activate Moneybutton Payment Gateway',
+                    'type' => 'checkbox',
+                    'description' => 'This allows for the use of Moneybutton as a payment method',
+                    'default' => 'no',
+                    ),
+                'title' => array(
+                    'title' => 'Title',
+                    'type' => 'text',
+                    'description' => 'This controls the title that the user will see on the Front End',
+                    'default' => 'Moneybutton',
+                    'desc_tip' => true,
+                    ),
+                'description' => array(
+                    'title' => 'Description',
+                    'type' => 'text area',
+                    'description' => 'This is the description of the gateway',
+                    'default' => 'Pay with Moneybutton',
+                    ),
+                'testmode' => array (
+                    'title' => 'Test Mode',
+                    'label' => 'Enable Test Mode',
+                    'type' => 'checkbox',
+                    'description' => 'This is to put the payment gateway into test mode using test API keys',
+                    'default' => 'yes',
+                    'desc_tip' => true,
+                    ),
+                'test_publishable_key' => array(
+                    'title' => 'Test Publishable Key',
+                    'type' => 'text',
+                    ),
+                'test_private_key' => array(
+                    'title' => 'Test Private Key',
+                    'type' => 'text',
+                    ),
+                'publishable_key' => array(
+                    'title' => 'Live Publishable Key',
+                    'type' => 'text',
+                    ),
+                'private_key' => array(
+                    'title' => 'Live Private Key',
+                    'type' => 'password',
+                    )
+                )
+            }
         }
 
         /* payment fields */

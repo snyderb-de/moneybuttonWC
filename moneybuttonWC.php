@@ -2,7 +2,7 @@
 
 /**
  *
- * Plugin Name: moneybuttonWC
+ * Plugin Name: mbwc
  * URI: TBD
  * Description: a plugin to use Money Button as a payment method for WooCommerce
  * Author: Bryan Snyder
@@ -133,6 +133,34 @@ function mbwc_class($gateways) {
 
         /* custom CSS & JS to override standard CC fields */
         public function payment_scripts() {
+            //process token on cart/checkout pages
+            if ( ! is_cart() && is_checkout() && ! isset( $_GET['pay for order'] ) ) {
+                return;
+            }
+
+            //if this gateway is disabled then we don't enqueue JS
+            if ( 'no' === $this->enabled ) {
+                return;
+            }
+
+            //if the API keys are not set then we don't enqueue JS
+            if ( empty( $this->private_key ) || empty( $this->publishable_key ) ){
+                return;
+            }
+
+            //ensure SSL is present or site is in test mode
+            if ( ! $this->testmode && ! is_ssl() ){
+                return;
+            }
+
+            //get token from our own payment processor
+            wp_enqueue_script( 'mbwc.js', 'URL to token js file' );
+
+            //put our payment gateway JS file in our plugin directory
+            wp_register_script( 'mbwc', plugins_url( 'mbwc.js', __FILE__ ), array( 'jquery', 'mbwc.js' ) )
+
+
+
 
         }
 

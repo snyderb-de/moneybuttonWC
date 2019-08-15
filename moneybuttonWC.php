@@ -55,7 +55,7 @@ function mbwc_class($gateways) {
             );
 
             // Method with all the options fields
-            $this->init_form_fields() {
+            $this->init_form_fields();
 
             // Load the settings
             $this->init_settings();
@@ -67,7 +67,7 @@ function mbwc_class($gateways) {
             $this->publishable_key = $this->testmode ? $this->get_option( 'test_publishable_key' ) : $this->get_option( 'publishable_key' );
 
             //Save the settings
-            add_action( 'woocommerce_update_options_payment_gateways_' . $this->id array($this, 'process_admin_options'));
+            add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array($this, 'process_admin_options'));
 
             //We need custom JavaScript to obtain a token
             add_action( 'wp_enqueue_scripts', array($this, 'payment_scripts'));
@@ -123,8 +123,7 @@ function mbwc_class($gateways) {
                     'title' => 'Live Private Key',
                     'type' => 'password',
                     )
-                )
-            }
+                );
         }
 
         /* payment fields */

@@ -154,13 +154,18 @@ function mbwc_class($gateways) {
             }
 
             //get token from our own payment processor
-            wp_enqueue_script( 'mbwc.js', 'URL to token js file' );
+            wp_enqueue_script( 'mbwc_js', 'URL to token js file' );
 
             //put our payment gateway JS file in our plugin directory
-            wp_register_script( 'mbwc', plugins_url( 'mbwc.js', __FILE__ ), array( 'jquery', 'mbwc.js' ) )
+            wp_register_script( 'mbwc', plugins_url( 'mbwc.js', __FILE__ ), array( 'jquery', 'mbwc_js' ) );
 
+            //use a Public Key to obtain a token
+            wp_localize_script( 'woocommerce_mbwc', 'mbwc_params', array(
+                'publishableKey' => $this->publishable_key
+            ) );
 
-
+            //enqueue the script
+            wp_enqueue_script( 'woocommerce_mbwc' );
 
         }
 

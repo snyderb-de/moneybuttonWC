@@ -171,6 +171,11 @@ function mbwc_class($gateways) {
 
         /* validate fields */
         public function validate_fields() {
+            if( empty( $_POST['billing_first_name'] ) ){
+                wc_add_notice( 'Your first name is required.', 'error' );
+                return false;
+            }
+            return true;
 
         }
 
